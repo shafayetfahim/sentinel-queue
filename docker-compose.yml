@@ -1,0 +1,14 @@
+services:
+  redis_queue:
+    image: redis:7-alpine
+    container_name: redis_queue
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+
+  worker:
+    build: .
+    depends_on:
+      - redis_queue
+    environment:
+      - REDIS_HOST=redis_queue
