@@ -3,7 +3,7 @@ import time
 import json
 
 # Connection
-r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+r = redis.Redis(host='redis_queue', port=6379, decode_responses=True)
 
 # Advanced Lua: Only grabs jobs where the score (scheduled time) <= current time
 LUA_DEQUEUE_SCRIPT = """
